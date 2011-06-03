@@ -1,4 +1,4 @@
-/* Copyright (c) 2005 ÍõÖùÊ¯wzs  */
+ï»¿/* Copyright (c) 2005 ç‹æŸ±çŸ³wzs  */
 
 #ifndef XmlParse_INCLUDED
 #define XmlParse_INCLUDED 1
@@ -14,92 +14,92 @@
 typedef struct {
   char *text ;
   int len ;
-} XSTRING ;   /* X×Ö´®, Ö»¶¨ÒåÖ¸Õë(xbuf) */
+} XSTRING ;   /* Xå­—ä¸², åªå®šä¹‰æŒ‡é’ˆ(xbuf) */
 
 struct ST_XNODE ;
 typedef struct ST_XNODE XNODE ;
 struct ST_XNODE {
- 	XSTRING name ;   /*  ½ÚµãÃû */ 
- 	int index ;      /*  Ë÷Òı   */
- 	XNODE *parentNode ;  /* ¸¸½Úµã  */ 
- 	int level ;      /* ¼¶±ğ */
- 	int tagCount ;   /* ×Ó½ÚµãÊı */
- 	XSTRING data ;   /* ÔªËØÖµ  */
+ 	XSTRING name ;   /*  èŠ‚ç‚¹å */ 
+ 	int index ;      /*  ç´¢å¼•   */
+ 	XNODE *parentNode ;  /* çˆ¶èŠ‚ç‚¹  */ 
+ 	int level ;      /* çº§åˆ« */
+ 	int tagCount ;   /* å­èŠ‚ç‚¹æ•° */
+ 	XSTRING data ;   /* å…ƒç´ å€¼  */
 }  ;
 
 typedef struct {
-	char 	*	xBuf , *xBufEnd , *xBufPos;  /* xÊ÷Ô´´æ´¢, ÖÕÖ¹, µ±Ç°Î»ÖÃ  */
-	XNODE		*nodeList ,  /* ½ÚµãÁĞ±í */  
-					*rootNode ,  /* ¸ù½ÚµãÖ¸Õë */
-				 	*preNode  ,  /* ÉÏ´Î²Ù×÷½Úµã */ 
-				 	*curNode ;   /* µ±Ç°½ÚµãÖ¸Õë */
-	int 	nodeCount, nodeMaxCount ;    /* ½Úµã×ÜÊı, ½Úµã×î´óÊı */
+	char 	*	xBuf , *xBufEnd , *xBufPos;  /* xæ ‘æºå­˜å‚¨, ç»ˆæ­¢, å½“å‰ä½ç½®  */
+	XNODE		*nodeList ,  /* èŠ‚ç‚¹åˆ—è¡¨ */  
+					*rootNode ,  /* æ ¹èŠ‚ç‚¹æŒ‡é’ˆ */
+				 	*preNode  ,  /* ä¸Šæ¬¡æ“ä½œèŠ‚ç‚¹ */ 
+				 	*curNode ;   /* å½“å‰èŠ‚ç‚¹æŒ‡é’ˆ */
+	int 	nodeCount, nodeMaxCount ;    /* èŠ‚ç‚¹æ€»æ•°, èŠ‚ç‚¹æœ€å¤§æ•° */
 }	XTREE ;
 
-/*  µ±Ç°ÈÕÆÚÊ±¼ä  */
+/*  å½“å‰æ—¥æœŸæ—¶é—´  */
 extern char * Xgetdatetime(char *dt) ;
 
-/* Ğ´ÎÄ¼ş */
+/* å†™æ–‡ä»¶ */
 extern void XPrtMess( ) ;
 
-/* Ğ´µ÷ÊÔĞÅÏ¢  */
+/* å†™è°ƒè¯•ä¿¡æ¯  */
 extern void XPrtDebug( ) ;
 
-/* Ğ´ÔËĞĞĞÅÏ¢  */
+/* å†™è¿è¡Œä¿¡æ¯  */
 extern void XPrtErr( ) ;
 
-extern int isSpace(int c) ;   /*  ÊÇ¿Õ·ñ  */
-extern int isNameTChar(int c);   /* ÓĞĞ§µÄÃû³ÆÇ°µ¼·û  */
-extern char * DelSpace( char *xbuf) ;   /* É¾³ıÇ°µ¼¿Õ */ 
+extern int isSpace(int c) ;   /*  æ˜¯ç©ºå¦  */
+extern int isNameTChar(int c);   /* æœ‰æ•ˆçš„åç§°å‰å¯¼ç¬¦  */
+extern char * DelSpace( char *xbuf) ;   /* åˆ é™¤å‰å¯¼ç©º */ 
 
-/*	¶Áxml²¢½âÎöµ½XÊ÷ */
+/*	è¯»xmlå¹¶è§£æåˆ°Xæ ‘ */
 extern int  XmlParseRead(char *xmlbuf, int xmlsize, XTREE *xTree) ;
 
-/* ÊÍ·ÅÉêÇëµÄÄÚ´æ */
+/* é‡Šæ”¾ç”³è¯·çš„å†…å­˜ */
 extern int XmlParseFree( XTREE *xTree ) ;
 
 extern int printXtree(XTREE *xTree) ;
 
-/*		´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ×Ó½Úµã(¸ù¾İ¸¸½ÚµãÃûºÍ½ÚµãÃû): */
+/*		ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—å­èŠ‚ç‚¹(æ ¹æ®çˆ¶èŠ‚ç‚¹åå’ŒèŠ‚ç‚¹å): */
 extern XNODE *XmlGetNode (XTREE *,  char *, char *) ;
 
-/*		´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ×Ó½Úµã(¸ù¾İ¸¸½ÚµãºÍ½ÚµãÃû): */
+/*		ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—å­èŠ‚ç‚¹(æ ¹æ®çˆ¶èŠ‚ç‚¹å’ŒèŠ‚ç‚¹å): */
 extern XNODE *XmlGetChildNode (XTREE *xTree, XNODE *pnode,  char *nodename) ;
 
-/*	´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ½Úµã(½ÚµãÃû) */
+/*	ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—èŠ‚ç‚¹(èŠ‚ç‚¹å) */
 extern XNODE *XmlGetNodeByName (XTREE *xTree, char *nodename) ;
 
-/*	È¡µÃÒ¶½Úµã: */
+/*	å–å¾—å¶èŠ‚ç‚¹: */
 extern XNODE *XmlGetTag (XTREE *xTree,  XNODE *pnode, char *tagname);
 
-/*	´úÂë±àÂë×ª»»1: */
+/*	ä»£ç ç¼–ç è½¬æ¢1: */
 extern int XEnCode(XSTRING *xs, char *scode, char *dcode ) ;
 
-/*	XML´úÂë±àÂë×ª»»: */
+/*	XMLä»£ç ç¼–ç è½¬æ¢: */
 extern int XmlDataEnCode(XSTRING *xs ) ;
 
-/*	XML´úÂë±àÂë·´×ª»»: */
+/*	XMLä»£ç ç¼–ç åè½¬æ¢: */
 extern int XmlDataUnCode(XSTRING *xs ) ;
 
-/* Ğ´xmlÍ·  */
+/* å†™xmlå¤´  */
 extern char * XmlWriteHead(char *xmlbuf, char *encode) ;
 
-/*  Ğ´±êÊ¶Í· */
+/*  å†™æ ‡è¯†å¤´ */
 extern char * XmlWriteNodeBeg(char *xmlbuf, char *Tag);
 
-/*  Ğ´±êÊ¶Î² */
+/*  å†™æ ‡è¯†å°¾ */
 extern char * XmlWriteNodeEnd(char *xmlbuf, char *Tag);
 
-/*  Ğ´Êı¾İÔªËØ */
+/*  å†™æ•°æ®å…ƒç´  */
 extern char * XmlWriteTag(char *xmlbuf, char *Tag, char *data ) ;
 
-/*  Ğ´À©Õ¹(ĞèÒª·ûºÅ×ª»»)µÄÊı¾İÔªËØ */
+/*  å†™æ‰©å±•(éœ€è¦ç¬¦å·è½¬æ¢)çš„æ•°æ®å…ƒç´  */
 extern char * XmlWriteExTag(char *xmlbuf, char *Tag, char *data ) ;
 
-/*  Ğ´×¢ÊÍ */
+/*  å†™æ³¨é‡Š */
 extern char * XmlWriteNote (char *xmlbuf, char *note);
 
-/*  Ğ´ÈÎÒâ´®Ğ´»º³å */
+/*  å†™ä»»æ„ä¸²å†™ç¼“å†² */
 extern char * XWriteBuf (char *buf, char *str) ;
 
 #endif 

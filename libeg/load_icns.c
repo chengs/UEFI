@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/load_icns.c
  * Loading function for .icns Apple icon images
  *

@@ -1,4 +1,4 @@
-#include <string.h>
+ï»¿#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -6,7 +6,7 @@
 #include "queue.h"
 //#include "_string_.h"
 
-//»ñµÃlabelµÄitem¸öÊý
+//èŽ·å¾—labelçš„itemä¸ªæ•°
 int itemNumbers(LPINISECTION sec)
 {
     LPINIITEM f,l,c;
@@ -20,7 +20,7 @@ int itemNumbers(LPINISECTION sec)
     }
     return r;
 }
-//»ñµÃiniµÄlabel¸öÊý
+//èŽ·å¾—iniçš„labelä¸ªæ•°
 int secNumbers(LPINIFILE ini)
 {
     LPINISECTION f,l,c;

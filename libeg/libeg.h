@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/libeg.h
  * EFI graphics library header for users
  *

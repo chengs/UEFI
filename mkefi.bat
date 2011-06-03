@@ -1,4 +1,4 @@
-
+﻿
 @echo off
 echo --begin--
 cd c:\EFI_Toolkit_2.0

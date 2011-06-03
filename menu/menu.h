@@ -1,11 +1,11 @@
-/*
+ï»¿/*
 menu.h
-»æÖÆ´°¿Ú
+ç»˜åˆ¶çª—å£
 */
 /*
-ÉùÃ÷Ö÷Òª²ÎÊı
+å£°æ˜ä¸»è¦å‚æ•°
 */
-//µ¼ÈëINI ¿â
+//å¯¼å…¥INI åº“
 #include "../libini/ini.h"
 
 #define WIN_WIDTH 70
@@ -21,27 +21,27 @@ typedef struct {
 	LPINIITEM curItem;
 	int curItemNum;
 } Display;
-//ÏÔÊ¾
+//æ˜¾ç¤º
 VOID menuShow(Display *d);
-//»æÖÆÍ·²¿
+//ç»˜åˆ¶å¤´éƒ¨
 VOID menuHeader();
-//»æÖÆÖ÷½çÃæ¿ò¼Ü
+//ç»˜åˆ¶ä¸»ç•Œé¢æ¡†æ¶
 VOID menuMainFrame();
-//»æÖÆ¿ì½İ¼üËµÃ÷
+//ç»˜åˆ¶å¿«æ·é”®è¯´æ˜
 VOID menuFooter();
-//Ä¿Â¼Ä£Ê½
+//ç›®å½•æ¨¡å¼
 VOID menuQuickKeyList();
-//ÊôĞÔĞŞ¸ÄÄ£Ê½
+//å±æ€§ä¿®æ”¹æ¨¡å¼
 VOID menuQuickKeyAttr();
-//»æÖÆÖµÉè¶¨´°¿Ú
+//ç»˜åˆ¶å€¼è®¾å®šçª—å£
 VOID menuAttrSetWindow();
-//»æÖÆsection ÁĞ±í
+//ç»˜åˆ¶section åˆ—è¡¨
 VOID menuSectionList(LPINIFILE ini);
-//»æÖÆattr ÁĞ±í
+//ç»˜åˆ¶attr åˆ—è¡¨
 VOID menuAttrList(Display *);
-//½áÊø¶¯×÷
+//ç»“æŸåŠ¨ä½œ
 VOID menuEnd();
-//»æÖÆ label
+//ç»˜åˆ¶ label
 VOID menuLabelList(LPINIFILE ini, int checked);
-//µÈ´ı°´¼ü
+//ç­‰å¾…æŒ‰é”®
 int menuWaitForKey(Display *d);

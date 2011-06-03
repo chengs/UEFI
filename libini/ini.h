@@ -1,4 +1,4 @@
-#ifndef _INI_H__
+ï»¿#ifndef _INI_H__
 #define _INI_H__
 #include <stdlib.h>
 #include <stdio.h>
@@ -28,22 +28,22 @@ typedef struct ini_file_t {
 	char mode[8];
 } INIFILE, *LPINIFILE;
 
-// INI¾ä±ú
+// INIå¥æŸ„
 typedef void* INIFILEHANDLE;
 
-// ½«iniÎÄ¼şÁí´æµ½Ò»¸öI/OÁ÷
+// å°†iniæ–‡ä»¶å¦å­˜åˆ°ä¸€ä¸ªI/Oæµ
 int ini_SaveTo(INIFILEHANDLE ini, FILE *fp);
-// ½«iniÎÄ¼şÁí´æÎª
+// å°†iniæ–‡ä»¶å¦å­˜ä¸º
 int ini_saveAs(INIFILEHANDLE ini, const char *saveFile);
-// ¹Ø±ÕiniÎÄ¼ş
+// å…³é—­iniæ–‡ä»¶
 void ini_close(INIFILEHANDLE ini);
-// ´ÓiniÎÄ¼ş¶ÁÈ¡Ò»¸ö×Ö·û´®ÀàĞÍµÄÊôĞÔÖµ
+// ä»iniæ–‡ä»¶è¯»å–ä¸€ä¸ªå­—ç¬¦ä¸²ç±»å‹çš„å±æ€§å€¼
 char *ini_ReadString(INIFILEHANDLE ini, const char *secName, const char *itemName, char *outBuf, const char *Default);
-// ´ÓiniÎÄ¼ş¶ÁÈ¡Ò»¸öÕûÊıÀàĞÍµÄÊôĞÔÖµ
+// ä»iniæ–‡ä»¶è¯»å–ä¸€ä¸ªæ•´æ•°ç±»å‹çš„å±æ€§å€¼
 int ini_ReadInt(INIFILEHANDLE ini, const char *secName, const char *itemName, int Default);
-// ÏòiniÎÄ¼şĞ´ÈëÒ»¸ö×Ö·û´®ÀàĞÍµÄÊôĞÔÖµ,Èç¹ûiniÎÄ¼şÃ»ÓĞ¸ÃÊôĞÔ,Ôò´´½¨
+// å‘iniæ–‡ä»¶å†™å…¥ä¸€ä¸ªå­—ç¬¦ä¸²ç±»å‹çš„å±æ€§å€¼,å¦‚æœiniæ–‡ä»¶æ²¡æœ‰è¯¥å±æ€§,åˆ™åˆ›å»º
 int ini_WriteString(INIFILEHANDLE ini, const char *secName, const char *itemName, const char *value);
-// ÏòiniÎÄ¼şĞ´ÈëÒ»¸öÕûÊıÀàĞÍµÄÊôĞÔÖµ,Èç¹ûiniÎÄ¼şÃ»ÓĞ¸ÃÊôĞÔ,Ôò´´½¨
+// å‘iniæ–‡ä»¶å†™å…¥ä¸€ä¸ªæ•´æ•°ç±»å‹çš„å±æ€§å€¼,å¦‚æœiniæ–‡ä»¶æ²¡æœ‰è¯¥å±æ€§,åˆ™åˆ›å»º
 int ini_WriteInt(INIFILEHANDLE ini, const char *secName, const char *itemName, int Value);
 //additem
 LPINIITEM ini_addItem(LPINISECTION iniSection, const char *name, const char *value);
@@ -54,16 +54,16 @@ LPINISECTION ini_addSection(LPINIFILE iniFile, const char *name);
 //del section
 void ini_delSection(LPINIFILE iniFile, LPINISECTION sec);
 
-// ´ò¿ªÒ»¸öiniÎÄ¼ş
-//    iniFile: iniÎÄ¼şÂ·¾¶
-//    mode: ´ò¿ª·½Ê½, ÓëfopenµÄµÚ¶ş¸ö²ÎÊıÒâÒåÏàÍ¬
+// æ‰“å¼€ä¸€ä¸ªiniæ–‡ä»¶
+//    iniFile: iniæ–‡ä»¶è·¯å¾„
+//    mode: æ‰“å¼€æ–¹å¼, ä¸fopençš„ç¬¬äºŒä¸ªå‚æ•°æ„ä¹‰ç›¸åŒ
 INIFILEHANDLE ini_open(const char *iniFile, const char *mode);
 
 
-//C¸ñÊ½µ½EFI¸ñÊ½×ª»»º¯Êı
+//Cæ ¼å¼åˆ°EFIæ ¼å¼è½¬æ¢å‡½æ•°
 char* a2u(char*str);
-//»ñµÃiniµÄlabel¸öÊı
+//è·å¾—iniçš„labelä¸ªæ•°
 int secNumbers(LPINIFILE ini);
-//»ñµÃlabelµÄitem¸öÊı
+//è·å¾—labelçš„itemä¸ªæ•°
 int itemNumbers(LPINISECTION sec);
 #endif//_INI_H__

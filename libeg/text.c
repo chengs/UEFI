@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/text.c
  * Text drawing functions
  *

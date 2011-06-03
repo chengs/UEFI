@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 menu.c
 */
 
@@ -17,7 +17,7 @@ menu.c
 /* 
  * ===  FUNCTION  ======================================================================
  *         Name:  get_s
- *  Description:  ĞŞÕı°æÊäÈëº¯Êı
+ *  Description:  ä¿®æ­£ç‰ˆè¾“å…¥å‡½æ•°
  * =====================================================================================
  */
 char *gets_s(char *s,int n)
@@ -39,7 +39,7 @@ VOID menuCleanHalf()
 	}
 }
 VOID menuReqOut(char *req);
-//»ñµÃÊäÈë
+//è·å¾—è¾“å…¥
 
 int menuGetBool(char *req)
 {
@@ -72,7 +72,7 @@ char* menuGetString(char *req)
 {
 	char *r;
 	char *buff = (char*)malloc(300);
-	//ÏÔÊ¾ÒªÇó
+	//æ˜¾ç¤ºè¦æ±‚
 	do
 	{
 		menuReqOut(req);
@@ -82,36 +82,36 @@ char* menuGetString(char *req)
 	while(r==NULL);
 	return r;
 }
-//ÏÔÊ¾ÒªÇó
+//æ˜¾ç¤ºè¦æ±‚
 VOID menuReqOut(char *req){
     UINTN fore,back;
     char *cache;
     conGetColor(&fore,&back);
     conSetColor(EFI_YELLOW,fore);
-    //Êä³öÖ®Ç°ÏÈÌî³äÑÕÉ«
+    //è¾“å‡ºä¹‹å‰å…ˆå¡«å……é¢œè‰²
     conFillLine(L' ',0,WIN_WIDTH,WIN_MAIN_BEGIN+2+WIN_MAIN_HEIGHT);
     conSetCursor(0,WIN_MAIN_BEGIN+2+WIN_MAIN_HEIGHT);
     Print(L"%s",a2u(req));
-    //»Ø¸´
+    //å›å¤
     conSetColor(fore,back);
 
 }
-//ÏÔÊ¾
+//æ˜¾ç¤º
 VOID menuShow(Display *d)
 {
-	//ÇåÆÁÄ»
+	//æ¸…å±å¹•
 	conClearST();
 	conSetCursorDisplay(TRUE);
 	
-	//Íâ¿ò
+	//å¤–æ¡†
 	menuHeader();
 	menuMainFrame();
 	
-	//Ö÷Ìå
+	//ä¸»ä½“
 	menuLabelList(d->file,d->curSecNum);
 	menuAttrList(d);
 
-	//½áÊø
+	//ç»“æŸ
 	menuFooter();
 
 	//welcome message
@@ -178,7 +178,7 @@ VOID disSecR(Display *d){
 	menuShow(d);
 }
 
-//»æÖÆÍ·²¿
+//ç»˜åˆ¶å¤´éƒ¨
 VOID menuHeader(){
     UINTN fore,back;
     conGetColor(&fore,&back);
@@ -189,7 +189,7 @@ VOID menuHeader(){
     conStringOutMidLine(WELCOME_CODER,0,WIN_WIDTH,1);
     conSetColor(fore,back);
 }
-//»æÖÆÖ÷½çÃæ¿ò¼Ü:
+//ç»˜åˆ¶ä¸»ç•Œé¢æ¡†æ¶:
 VOID menuMainFrame(){
     UINTN fore,back;
     conGetColor(&fore,&back);
@@ -207,7 +207,7 @@ VOID menuMainFrame(){
     conSetColor(fore,back);
 }
 
-//»æÖÆsection ÁĞ±íg
+//ç»˜åˆ¶section åˆ—è¡¨g
 VOID menuSectionList(LPINIFILE ini)
 {
 	char *cache;
@@ -218,7 +218,7 @@ VOID menuSectionList(LPINIFILE ini)
 	LPINISECTION l = ini->last_section;
 	LPINISECTION p = f;
 	if(f==NULL) return;
-	//¸Ä±äÎÄ×ÖÑÕÉ«
+	//æ”¹å˜æ–‡å­—é¢œè‰²
 	conGetColor(&fore,&back);
 	conSetColor(EFI_YELLOW,back);
 	while(flag==0)
@@ -233,13 +233,13 @@ VOID menuSectionList(LPINIFILE ini)
 			line++;
 		}
 	}
-	//»Ö¸´ÎÄ×ÖÑÕÉ«
+	//æ¢å¤æ–‡å­—é¢œè‰²
 	conSetColor(fore,back);
 
 
 }
 
-//»æÖÆattr ÁĞ±í
+//ç»˜åˆ¶attr åˆ—è¡¨
 VOID menuAttrList(Display *d){
 	LPINISECTION section = d->curSec;
 	char* cache1,*cache2;
@@ -286,14 +286,14 @@ VOID menuAttrList(Display *d){
 	
 }
 
-//½áÊø¶¯×÷
+//ç»“æŸåŠ¨ä½œ
 VOID menuEnd()
 {
-	//³ÌĞò½áÊøÊ±Íê³ÉÇåÀí¶¯×÷
+	//ç¨‹åºç»“æŸæ—¶å®Œæˆæ¸…ç†åŠ¨ä½œ
 	conClearST();	
 }
 
-//»æÖÆ label
+//ç»˜åˆ¶ label
 VOID menuLabelList(LPINIFILE ini, int checked)
 {
 	UINTN fore,back;
@@ -303,11 +303,11 @@ VOID menuLabelList(LPINIFILE ini, int checked)
 	conGetColor(&fore,&back);
 	f = ini->first_section;
 	l = ini->last_section;
-	//¼ì²échecked ±äÁ¿ÓĞĞ§ĞÔ
+	//æ£€æŸ¥checked å˜é‡æœ‰æ•ˆæ€§
 	if(checked<=0 || checked > secNumbers(ini) ){
 		checked = 1;
 	}
-	//Éè¶¨¹â±ê
+	//è®¾å®šå…‰æ ‡
 	conSetCursor(0,WIN_MAIN_BEGIN-1);
 	for(cur=f;;cur=cur->next,count++){
 		if ( count != checked ) {
@@ -320,11 +320,11 @@ VOID menuLabelList(LPINIFILE ini, int checked)
 		free(cache);
 		if(cur == l) break;
 	}
-	//»Ø¸´ÑÕÉ«
+	//å›å¤é¢œè‰²
 	conSetColor(fore,back);
 }
 
-//µÈ´ı°´¼ü
+//ç­‰å¾…æŒ‰é”®
 int menuWaitForKey(Display *d){
 	char *input,*inputn,*inputv;
 	LPINIFILE ini = d->file;
@@ -416,28 +416,28 @@ int menuWaitForKey(Display *d){
 			//return;
 		}
 	}
-	//²»»áÔËĞĞµ½ÕâÀï
+	//ä¸ä¼šè¿è¡Œåˆ°è¿™é‡Œ
 	return 0;
 
 }
 #define QUICK_KEY_STRING1 L"Esc   Quit       F1 Add item       F3  Add Section"
 #define QUICK_KEY_STRING2 L"Enter Set Value  F2 Delete item    F4  Delete Section"
 #define QUICK_KEY_STRING3 L" "
-//»æÖÆ¿ì½İ¼üËµÃ÷
+//ç»˜åˆ¶å¿«æ·é”®è¯´æ˜
 VOID menuFooter(){
 	UINTN fore,back;
 	UINTN line = WIN_MAIN_BEGIN+3+WIN_MAIN_HEIGHT;
 	conGetColor(&fore,&back);
 	conSetColor(EFI_YELLOW,EFI_BLUE);
-	//Ìî³äÑÕÉ«
+	//å¡«å……é¢œè‰²
 	conFillLine(L' ',0,WIN_WIDTH,line);
 	conFillLine(L' ',0,WIN_WIDTH,line+1);
 	//conFillLine(L' ',0,WIN_WIDTH,line+2);
-	//Êä³ö
+	//è¾“å‡º
 	PrintAt(0,line,QUICK_KEY_STRING1);
 	PrintAt(0,line+1,QUICK_KEY_STRING2);
 	//PrintAt(0,line+2,QUICK_KEY_STRING3);
-	//»Ö¸´ÑÕÉ«
+	//æ¢å¤é¢œè‰²
 	conSetColor(fore,back);
 }
 

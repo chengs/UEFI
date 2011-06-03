@@ -1,20 +1,20 @@
-/* Copyright (c) 2005 ÍõÖùÊ¯wzs  */
+ï»¿/* Copyright (c) 2005 ç‹æŸ±çŸ³wzs  */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <stdarg.h>
 #include "libxml.h"
-/*xmlµÃµ½½ÚµãÃûÖµ, ·µ»Ø: 1½Úµã±êÊ¶Ãû¿ªÍ·, 2½Úµã±êÊ¶Ãû½áÎ², 3 ×¢ÊÍ , 4ÔªËØÊı¾İ  <=0ÓĞ´íÎó */
+/*xmlå¾—åˆ°èŠ‚ç‚¹åå€¼, è¿”å›: 1èŠ‚ç‚¹æ ‡è¯†åå¼€å¤´, 2èŠ‚ç‚¹æ ‡è¯†åç»“å°¾, 3 æ³¨é‡Š , 4å…ƒç´ æ•°æ®  <=0æœ‰é”™è¯¯ */
 #define XVAL_NBEGIN 	1
 #define XVAL_NEND 		2
 #define XVAL_NOTE			3
 #define XVAL_DATA 		4
-#define XVAL_TAG 			5      /* ¿Õ±êÖ¾ */
+#define XVAL_TAG 			5      /* ç©ºæ ‡å¿— */
 #define XVAL_NONE			0
 #define XVAL_ERROR		-1
 
-/*  µ±Ç°ÈÕÆÚÊ±¼ä  */
+/*  å½“å‰æ—¥æœŸæ—¶é—´  */
 char * Xgetdatetime(dt)
 char *dt;
 {
@@ -34,7 +34,7 @@ char *dt;
    return dt;
 }
 
-/* Ğ´ÎÄ¼ş */
+/* å†™æ–‡ä»¶ */
 void XPrtMess(char *fname, char* fmtstr, ... )
 {
  va_list ap;
@@ -58,7 +58,7 @@ void XPrtMess(char *fname, char* fmtstr, ... )
         va_end(ap);
 }
 
-/* Ğ´µ÷ÊÔĞÅÏ¢  */
+/* å†™è°ƒè¯•ä¿¡æ¯  */
 void XPrtDebug( char *fmtstr, ... )
 {
  va_list ap;
@@ -85,7 +85,7 @@ void XPrtDebug( char *fmtstr, ... )
         va_end(ap);
 }
 
-/* Ğ´ÔËĞĞĞÅÏ¢  */
+/* å†™è¿è¡Œä¿¡æ¯  */
 void XPrtErr(char* fmtstr, ... )
 {
  va_list ap;
@@ -111,7 +111,7 @@ void XPrtErr(char* fmtstr, ... )
         va_end(ap);
 }
 
-static int isSpace(int c)   /*  ÊÇ¿Õ·ñ  */
+static int isSpace(int c)   /*  æ˜¯ç©ºå¦  */
 {
   switch (c) {
   case 0x20:
@@ -123,19 +123,19 @@ static int isSpace(int c)   /*  ÊÇ¿Õ·ñ  */
   return 0;
 }
 
-static int isNameTChar(int c)   /* ÓĞĞ§µÄÃû³ÆÇ°µ¼·û  */
+static int isNameTChar(int c)   /* æœ‰æ•ˆçš„åç§°å‰å¯¼ç¬¦  */
 {
 	return (c>='A' && c<='Z') || (c>='a' && c<='z') || (c=='_') ;  
 }
 
-int EqXString (XSTRING *dxs, XSTRING *sxs )    /*  X×Ö´®¸³Öµ  */
+int EqXString (XSTRING *dxs, XSTRING *sxs )    /*  Xå­—ä¸²èµ‹å€¼  */
 {
    dxs->text = sxs->text ;
    dxs->len = sxs->len ;
    return 0;
 }
 
-int EqXNode (XNODE *dx, XNODE *sx )    /*  X½Úµã¸³Öµ  */
+int EqXNode (XNODE *dx, XNODE *sx )    /*  XèŠ‚ç‚¹èµ‹å€¼  */
 {
    EqXString ( &(dx->name), &(sx->name) ); 
    dx->index = sx->index ;
@@ -147,7 +147,7 @@ int EqXNode (XNODE *dx, XNODE *sx )    /*  X½Úµã¸³Öµ  */
 }
 
 
-/*	Ôö¼ÓÍ¬¼¶½Úµã:   */
+/*	å¢åŠ åŒçº§èŠ‚ç‚¹:   */
 XNODE *XAddNode(XTREE *xTree , XSTRING *name)
 {
 	if (xTree->curNode->parentNode == NULL  || xTree->nodeCount >= xTree->nodeMaxCount ) return NULL ;
@@ -162,7 +162,7 @@ XNODE *XAddNode(XTREE *xTree , XSTRING *name)
 	return (xTree->curNode);
 }
 
-/* 	Ôö¼Ó×Ó½Úµã:   */
+/* 	å¢åŠ å­èŠ‚ç‚¹:   */
 XNODE *XAddSubNode(XTREE *xTree , XSTRING *name)
 {
 	if (xTree->curNode == NULL  || xTree->nodeCount >= xTree->nodeMaxCount ) return NULL ;
@@ -177,7 +177,7 @@ XNODE *XAddSubNode(XTREE *xTree , XSTRING *name)
   return (xTree->curNode);
 }
 
-/*	·µ»Ø¸¸½Úµã:   */
+/*	è¿”å›çˆ¶èŠ‚ç‚¹:   */
 XNODE *XRetParentNode(XTREE *xTree )
 {
    if (xTree->curNode->parentNode == NULL ) return NULL;
@@ -186,7 +186,7 @@ XNODE *XRetParentNode(XTREE *xTree )
    return (xTree->curNode);
 }
 
-/*	ĞŞ¸Äµ±Ç°½ÚµãÔªËØÖµ: */
+/*	ä¿®æ”¹å½“å‰èŠ‚ç‚¹å…ƒç´ å€¼: */
 int XElementData(XTREE *xTree , XSTRING *data)
 {
    if (xTree->curNode == NULL ) return -1 ;
@@ -195,14 +195,14 @@ int XElementData(XTREE *xTree , XSTRING *data)
    return 0;
 }
 
-char * DelSpace( char *xbuf)    /* É¾³ıÇ°µ¼¿Õ */ 
+char * DelSpace( char *xbuf)    /* åˆ é™¤å‰å¯¼ç©º */ 
 {
 	  char *p ;
-	  for (p=xbuf ; isSpace(*p) ; p++);   /* È¥µô¿Õ×Ö·û */
+	  for (p=xbuf ; isSpace(*p) ; p++);   /* å»æ‰ç©ºå­—ç¬¦ */
 	  return (p);
 }
 
-int XmlAttr( XTREE *xTree, XSTRING *val)  /* ´¦ÀíÊôĞÔ: µ±×÷Ò¶½Úµã, ×Ó½ÚµãÊıÎª-1, ·µ»ØÔö¼ÓµÄÊôĞÔ½ÚµãÊı */
+int XmlAttr( XTREE *xTree, XSTRING *val)  /* å¤„ç†å±æ€§: å½“ä½œå¶èŠ‚ç‚¹, å­èŠ‚ç‚¹æ•°ä¸º-1, è¿”å›å¢åŠ çš„å±æ€§èŠ‚ç‚¹æ•° */
 {
 	  XSTRING xn, xv;
 	  int k=0;
@@ -223,7 +223,7 @@ int XmlAttr( XTREE *xTree, XSTRING *val)  /* ´¦ÀíÊôĞÔ: µ±×÷Ò¶½Úµã, ×Ó½ÚµãÊıÎª-1,
 	    xv.text = p1+1;
 	    *p2 ='\0';
 	    xv.len = p2-p1-1;
-	    /* Ôö¼ÓÊôĞÔÖµ½Úµã  */
+	    /* å¢åŠ å±æ€§å€¼èŠ‚ç‚¹  */
 	    if (XAddSubNode(xTree, &xn)==NULL) break ;
 	    k++;	
 	    if (XElementData(xTree , &xv) <0 ) break ;
@@ -234,14 +234,14 @@ int XmlAttr( XTREE *xTree, XSTRING *val)  /* ´¦ÀíÊôĞÔ: µ±×÷Ò¶½Úµã, ×Ó½ÚµãÊıÎª-1,
 		return (k);
 }
 
-/*  xmlµÃµ½½ÚµãÃûÖµ, ·µ»Ø: 1½Úµã±êÊ¶Ãû¿ªÍ·, 2½Úµã±êÊ¶Ãû½áÎ², 3 ×¢ÊÍ , 4ÔªËØÊı¾İ  0ÎŞ  -1ÓĞ´íÎó */
+/*  xmlå¾—åˆ°èŠ‚ç‚¹åå€¼, è¿”å›: 1èŠ‚ç‚¹æ ‡è¯†åå¼€å¤´, 2èŠ‚ç‚¹æ ‡è¯†åç»“å°¾, 3 æ³¨é‡Š , 4å…ƒç´ æ•°æ®  0æ—   -1æœ‰é”™è¯¯ */
 int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
 {
     char *p ,*p1, *p2;
     int ivtype=XVAL_NONE ;
     p=xTree->xBufPos ;
-    p=DelSpace( xTree->xBufPos)  ;   /* É¾³ıÇ°µ¼¿Õ */ 
-    if (*p !='<') {     /* Êı¾İ */
+    p=DelSpace( xTree->xBufPos)  ;   /* åˆ é™¤å‰å¯¼ç©º */ 
+    if (*p !='<') {     /* æ•°æ® */
     	p1 = p;
     	p2=strchr(p1, '<'); 
     	val->text = p1;
@@ -251,12 +251,12 @@ int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
     	goto OKExit33qqq ;	
     }
     
-    /*  Ç°µ¼Îª<  */
+    /*  å‰å¯¼ä¸º<  */
      p++;
-     if ( *p=='/' )   {    /* ±ê¼ÇÎ² */
+     if ( *p=='/' )   {    /* æ ‡è®°å°¾ */
       	p1 = p+1;
       	p2=strchr(p1, '>'); 
-      	if (p2==NULL) {  /*  ´íÎó */
+      	if (p2==NULL) {  /*  é”™è¯¯ */
       		 goto ErrExit33qqq ;
       	} else {
       		ivtype=XVAL_NEND;
@@ -265,20 +265,20 @@ int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
       		xTree->xBufPos = p2 +1  ; 
         }
     	}
-    	else if (isNameTChar(*p))  {   /* ±ê¼ÇÍ·  */
+    	else if (isNameTChar(*p))  {   /* æ ‡è®°å¤´  */
  				p1=p;
  				p2=strchr(p1,'>');
-      	if (p2==NULL) {  /*  ´íÎó */
+      	if (p2==NULL) {  /*  é”™è¯¯ */
       		 goto ErrExit33qqq ;
       	} 				
  				for (p=p1; *p!=' ' && p<p2; p++);
- 				if (*(p2-1)=='/') {  /* ´¦Àí¿Õ±ê¼Ç<abc/> */
+ 				if (*(p2-1)=='/') {  /* å¤„ç†ç©ºæ ‡è®°<abc/> */
  					ivtype=11;
  					val->text = p1;
  					if (p>=p2) p=p2-1;
  					val->len = p - p1;
  					if (	XAddSubNode( xTree , val ) == NULL) goto ErrExit33qqq ;
- 					if (p < p2-1 ) /*  Ôö¼ÓÊôĞÔ½Úµã  */ 
+ 					if (p < p2-1 ) /*  å¢åŠ å±æ€§èŠ‚ç‚¹  */ 
  					{
  						  *(p2-1) ='\0';
  						  p++;
@@ -291,7 +291,7 @@ int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
  					ivtype=XVAL_NBEGIN;
  					val->text = p1;
  					val->len = p - p1;
-          if (p < p2)    /*  Ôö¼ÓÊôĞÔ½Úµã  */ 
+          if (p < p2)    /*  å¢åŠ å±æ€§èŠ‚ç‚¹  */ 
           {
           	  if (	XAddSubNode( xTree , val ) == NULL) goto ErrExit33qqq ;
           	  *(p2) ='\0';
@@ -304,12 +304,12 @@ int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
 				xTree->xBufPos = p2 +1  ;
       }
       else if (*p=='!') {     
-      	if (*(p+1)=='-' &&  *(p+2)=='-')   /* ×¢ÊÍ */
+      	if (*(p+1)=='-' &&  *(p+2)=='-')   /* æ³¨é‡Š */
       	{ 
       		p+=3;  
       		p1=DelSpace(p);
-      		p2=strstr(p1, "-->");   /*×¢ÊÍÎ² */
-      		if (p2==NULL) {  /*  ´íÎó */
+      		p2=strstr(p1, "-->");   /*æ³¨é‡Šå°¾ */
+      		if (p2==NULL) {  /*  é”™è¯¯ */
 	      		 goto ErrExit33qqq ;
       	  } else {
       	  	ivtype=XVAL_NOTE;
@@ -329,7 +329,7 @@ int XmlReadNodeVal(XTREE *xTree, XSTRING *val )
 			 return (ivtype) ; 	
 }
 
-/*	¶Áxml²¢½âÎöµ½XÊ÷ */
+/*	è¯»xmlå¹¶è§£æåˆ°Xæ ‘ */
 int  XmlParseRead(char *xmlbuf, int xmlsize, XTREE *xTree) 
 {
 		char *p, *p1, *pend = xmlbuf + xmlsize;
@@ -342,20 +342,20 @@ int  XmlParseRead(char *xmlbuf, int xmlsize, XTREE *xTree)
 
 	  if (memcmp(xmlbuf,"<?xml version=", 14)!=0) 
 	  {	
-	  	XPrtErr("ÎŞXMLÄÚÈİÍ·!");
+	  	XPrtErr("æ— XMLå†…å®¹å¤´!");
 	  	return -1;
 		}	
 	  p=strstr(xmlbuf, "?>")	;
 	  if (p==NULL) 
 	  {	
-	  	XPrtErr("XMLÄÚÈİÍ·ÎŞ½áÎ²!");
+	  	XPrtErr("XMLå†…å®¹å¤´æ— ç»“å°¾!");
 	  	return -1;
 		}	
 
 	  p1=DelSpace(p+2);
 	  for (p=p1, maxnn=1; p<pend ; p++) {
 		  if (*p=='>' || *p=='"') maxnn++;
-		  if (*p=='>') if (*(p-1) == '/')  maxnn++;  /*  ¿Õ±ê¼Ç  */ 
+		  if (*p=='>') if (*(p-1) == '/')  maxnn++;  /*  ç©ºæ ‡è®°  */ 
 	  }
 	  maxnn = maxnn / 2 + 2 ;	
 	  xTree->xBuf =xmlbuf; 
@@ -371,19 +371,19 @@ int  XmlParseRead(char *xmlbuf, int xmlsize, XTREE *xTree)
     if 	(vtype!=XVAL_NBEGIN) 
     {
     		xTree->nodeMaxCount = 0;
-    		XPrtDebug("¿ÕXMLÄÚÈİ");
+    		XPrtDebug("ç©ºXMLå†…å®¹");
     		return 0;
   	}	
-  	XPrtDebug("===ÉêÇë½Úµã´æ´¢¿Õ¼ä=%d ", maxnn);
-	  xTree->nodeList = (XNODE *) calloc( maxnn , sizeof(XNODE) );   /* ÉêÇë½Úµã´æ´¢¿Õ¼ä */
+  	XPrtDebug("===ç”³è¯·èŠ‚ç‚¹å­˜å‚¨ç©ºé—´=%d ", maxnn);
+	  xTree->nodeList = (XNODE *) calloc( maxnn , sizeof(XNODE) );   /* ç”³è¯·èŠ‚ç‚¹å­˜å‚¨ç©ºé—´ */
 	  if (xTree->nodeList == NULL ) 
 	  {
-	  	XPrtErr("ÉêÇë½Úµã´æ´¢¿Õ¼ä(%d)Ê§°Ü!", maxnn );
+	  	XPrtErr("ç”³è¯·èŠ‚ç‚¹å­˜å‚¨ç©ºé—´(%d)å¤±è´¥!", maxnn );
 	  	return -2;
 	  }	
 	  xTree->nodeMaxCount = maxnn ;
 	  memset( xTree->nodeList , 0x00, maxnn * sizeof(XNODE) );
-		xTree->rootNode = &(xTree->nodeList[0]);   /* ¸ù½Úµã */
+		xTree->rootNode = &(xTree->nodeList[0]);   /* æ ¹èŠ‚ç‚¹ */
 		xTree->rootNode->parentNode = NULL ;
 		xTree->rootNode->index = xTree->rootNode->level =0;
 		*(xstr.text+xstr.len)='\0';
@@ -404,24 +404,24 @@ int  XmlParseRead(char *xmlbuf, int xmlsize, XTREE *xTree)
 						if (	XAddSubNode( xTree , &xstr ) == NULL) k=maxnn+1 ;			
     		  	break ;
     		case XVAL_NEND :
-						XRetParentNode( xTree ) ;  		  /*	·µ»Ø¸¸½Úµã:   */
+						XRetParentNode( xTree ) ;  		  /*	è¿”å›çˆ¶èŠ‚ç‚¹:   */
 						break;
 				case XVAL_DATA :
-						XElementData( xTree , &xstr ) ;	/* 	ĞŞ¸Äµ±Ç°½ÚµãÔªËØÖµ: */
+						XElementData( xTree , &xstr ) ;	/* 	ä¿®æ”¹å½“å‰èŠ‚ç‚¹å…ƒç´ å€¼: */
 						break;
 				default :
-					  if (vtype>10)	 break;  /* printf(" ===cÔö¼Ó%d\n",  vtype -10 ); */
+					  if (vtype>10)	 break;  /* printf(" ===cå¢åŠ %d\n",  vtype -10 ); */
     	}
     }
-  *xmlbuf = '\0';   /* ÖÃÒÑ½âÎö±êÖ¾  */  
-  maxnn = xTree->curNode->index ;   /* ×îÖÕµ±Ç°½ÚµãºÅ */   
+  *xmlbuf = '\0';   /* ç½®å·²è§£ææ ‡å¿—  */  
+  maxnn = xTree->curNode->index ;   /* æœ€ç»ˆå½“å‰èŠ‚ç‚¹å· */   
 	for (k=0; k<xTree->nodeCount ; k++){
 		xn =&( xTree->nodeList[k] );
 		if (xn->name.text)	*(xn->name.text + xn->name.len) ='\0'; else xn->name.text=xmlbuf ;
 		if (xn->data.text) *(xn->data.text + xn->data.len) ='\0'; else xn->data.text=xmlbuf ;  
 	}
-  XPrtDebug	 ( " ½ÚµãÊı=%d\n", xTree->nodeCount);
-  if (maxnn) XPrtErr("XMLÎÄ¼ş²»ÍêÕû(%d) ", maxnn );
+  XPrtDebug	 ( " èŠ‚ç‚¹æ•°=%d\n", xTree->nodeCount);
+  if (maxnn) XPrtErr("XMLæ–‡ä»¶ä¸å®Œæ•´(%d) ", maxnn );
 	xTree->curNode= xTree->rootNode ;  
   return (maxnn);
 }
@@ -437,8 +437,8 @@ int printXtree(XTREE *xTree)
 {
 	int k ;
 	XNODE *xn ;
-	XPrtDebug("   ********  xTree ½á¹¹, ×Ü½ÚµãÊı=%d, ½Úµã¿Õ¼ä=%d  ********  ", xTree->nodeCount, xTree->nodeMaxCount);
-	XPrtDebug("\t½ÚµãºÅ	¸¸½Úµã	½Úµã¼¶	×Ó½ÚÊı	½ÚµãÃû	½ÚµãÊı¾İ");
+	XPrtDebug("   ********  xTree ç»“æ„, æ€»èŠ‚ç‚¹æ•°=%d, èŠ‚ç‚¹ç©ºé—´=%d  ********  ", xTree->nodeCount, xTree->nodeMaxCount);
+	XPrtDebug("\tèŠ‚ç‚¹å·	çˆ¶èŠ‚ç‚¹	èŠ‚ç‚¹çº§	å­èŠ‚æ•°	èŠ‚ç‚¹å	èŠ‚ç‚¹æ•°æ®");
 	for (k=0; k<xTree->nodeCount ; k++){
 		xn =&( xTree->nodeList[k] );
 		XPrtDebug("\t%d	%d	%d	%d	[%s]	[%s]",xn->index,(xn->parentNode ? xn->parentNode->index : -1),  xn->level, xn->tagCount,xn->name.text, xn->data.text );
@@ -447,7 +447,7 @@ int printXtree(XTREE *xTree)
     return 0;
 } 
 
-/*	´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ½Úµã: */
+/*	ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—èŠ‚ç‚¹: */
 XNODE *XmlGetNodeByName (XTREE *xTree, char *nodename)
 {
 	 register int k;
@@ -462,7 +462,7 @@ XNODE *XmlGetNodeByName (XTREE *xTree, char *nodename)
 	return ( xn ) ; 
 }
 
-/*		´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ×Ó½Úµã(¸ù¾İ¸¸½ÚµãÃûºÍ½ÚµãÃû): */
+/*		ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—å­èŠ‚ç‚¹(æ ¹æ®çˆ¶èŠ‚ç‚¹åå’ŒèŠ‚ç‚¹å): */
 XNODE *XmlGetNode (XTREE *xTree, char *pname, char *nodename)
 {
 	 register int k;
@@ -477,7 +477,7 @@ XNODE *XmlGetNode (XTREE *xTree, char *pname, char *nodename)
 	return ( xTree->curNode ) ; 
 }
 
-/*		´Óµ±Ç°½ÚµãÍùÏÂÈ¡µÃ×Ó½Úµã(¸ù¾İ¸¸½ÚµãºÍ½ÚµãÃû): */
+/*		ä»å½“å‰èŠ‚ç‚¹å¾€ä¸‹å–å¾—å­èŠ‚ç‚¹(æ ¹æ®çˆ¶èŠ‚ç‚¹å’ŒèŠ‚ç‚¹å): */
 XNODE *XmlGetChildNode (XTREE *xTree, XNODE *pnode,  char *nodename)
 {
 	 register int k;
@@ -493,7 +493,7 @@ XNODE *XmlGetChildNode (XTREE *xTree, XNODE *pnode,  char *nodename)
 	return ( xTree->curNode ) ; 
 }
 
-/*	È¡µÃÒ¶½Úµã: */
+/*	å–å¾—å¶èŠ‚ç‚¹: */
 XNODE *XmlGetTag (XTREE *xTree,  XNODE *pnode, char *tagname)
 {
 	 register int k;
@@ -510,7 +510,7 @@ XNODE *XmlGetTag (XTREE *xTree,  XNODE *pnode, char *tagname)
 	return ( xTree->curNode ) ; 
 }
 
-/*	´úÂë±àÂë×ª»»1: */
+/*	ä»£ç ç¼–ç è½¬æ¢1: */
 int XEnCode(XSTRING *xs, char *scode, char *dcode )
 {
 	int k, lens=strlen(scode), lend=strlen(dcode), nrr=0;
@@ -542,7 +542,7 @@ int XEnCode(XSTRING *xs, char *scode, char *dcode )
 	return (nrr);
 }
 
-/*	XML´úÂë·ûºÅ×ª»»: */
+/*	XMLä»£ç ç¬¦å·è½¬æ¢: */
 int XmlDataEnCode(XSTRING *xs )
 {
 	XEnCode(xs, "&lt;", "<");
@@ -550,12 +550,12 @@ int XmlDataEnCode(XSTRING *xs )
 	XEnCode(xs, "&quot;", "\"");
 	XEnCode(xs, "&apos;", "'");
 	XEnCode(xs, "&amp;", "&");
-/* Îª·ÀÖ¹°üÖĞ·Ö¸ô·ûÓëÒµÎñÏµÍ³³åÍ»,·Ç±ê×¼×ª»»  */
+/* ä¸ºé˜²æ­¢åŒ…ä¸­åˆ†éš”ç¬¦ä¸ä¸šåŠ¡ç³»ç»Ÿå†²çª,éæ ‡å‡†è½¬æ¢  */
 	XEnCode(xs, "|", ":");
 	return (0);
 }
 
-/*	XML´úÂë·ûºÅ·´×ª»»: */
+/*	XMLä»£ç ç¬¦å·åè½¬æ¢: */
 int XmlDataUnCode(XSTRING *xs )
 {
 	XEnCode(xs, "&", "&amp;");
@@ -566,14 +566,14 @@ int XmlDataUnCode(XSTRING *xs )
 	return (0);
 }
 
-/* Ğ´xmlÍ·  */
+/* å†™xmlå¤´  */
 char * XmlWriteHead(char *xmlbuf, char *encode)
 {
 	 sprintf(xmlbuf, "<?xml version=\"1.0\" encoding=\"%s\"?>\n\0",encode);
 	 return (xmlbuf + strlen(xmlbuf) ); 
 }
 
-/*  Ğ´±êÊ¶Í· */
+/*  å†™æ ‡è¯†å¤´ */
 char * XmlWriteNodeBeg(char *xmlbuf, char *Tag)
 {
 	int k;
@@ -589,7 +589,7 @@ char * XmlWriteNodeBeg(char *xmlbuf, char *Tag)
 	  
 }
 
-/*  Ğ´±êÊ¶Î² */
+/*  å†™æ ‡è¯†å°¾ */
 char * XmlWriteNodeEnd(char *xmlbuf, char *Tag)
 {
 	 int k ;
@@ -603,7 +603,7 @@ char * XmlWriteNodeEnd(char *xmlbuf, char *Tag)
 		}	 
 }
 
-/*  Ğ´Êı¾İÔªËØ */
+/*  å†™æ•°æ®å…ƒç´  */
 char * XmlWriteTag(char *xmlbuf, char *Tag, char *data )
 {
 	 int k ;
@@ -617,7 +617,7 @@ char * XmlWriteTag(char *xmlbuf, char *Tag, char *data )
 		} 
 }
 
-/*  Ğ´À©Õ¹(ĞèÒª·ûºÅ×ª»»)µÄÊı¾İÔªËØ */
+/*  å†™æ‰©å±•(éœ€è¦ç¬¦å·è½¬æ¢)çš„æ•°æ®å…ƒç´  */
 char * XmlWriteExTag(char *xmlbuf, char *Tag, char *data )
 {
  	 XSTRING xs ;
@@ -640,14 +640,14 @@ char * XmlWriteExTag(char *xmlbuf, char *Tag, char *data )
 		}	
 }
 
-/*  Ğ´×¢ÊÍ */
+/*  å†™æ³¨é‡Š */
 char * XmlWriteNote (char *xmlbuf, char *note)
 {
 	 sprintf(xmlbuf, "<!--%s-->\n\0", note );
 	 return (xmlbuf + strlen(note)+8 ); 
 }
 
-/*  Ğ´ÈÎÒâ´®Ğ´»º³å */
+/*  å†™ä»»æ„ä¸²å†™ç¼“å†² */
 char * XWriteBuf (char *buf, char *str)
 {
 	 sprintf(buf, "%s\0", str );

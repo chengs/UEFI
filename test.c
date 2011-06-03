@@ -1,4 +1,4 @@
-/*++
+ï»¿/*++
 
 Copyright (c) 1998  Intel Corporation
 
@@ -29,7 +29,7 @@ Revision History
 	int
 main ( int argc, char *argv[] )
 {
-	//±äÁ¿ÉùÃ÷
+	//å˜é‡å£°æ˜
 	INIFILEHANDLE ini;
 	LPINIFILE ini1;
 	Display dis;
@@ -42,7 +42,7 @@ main ( int argc, char *argv[] )
 	
 	Print(L"Init\n");
 	Print(L"Read File\n");
-	//¶ÁÎÄ¼ş
+	//è¯»æ–‡ä»¶
 	ini = ini_open(argv[1],"r");
 	Print(L"Read Success\n");
 	ini1 = (LPINIFILE)ini;
@@ -57,7 +57,7 @@ main ( int argc, char *argv[] )
 	menuShow(&dis);
 	r = menuWaitForKey(&dis);
 	
-	//±£´æÎÄ¼ş
+	//ä¿å­˜æ–‡ä»¶
 	Print(L"save file\n");
 	if(r == 1){
         ini_saveAs(ini,argv[1]);

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/image.c
  * Image handling functions
  *

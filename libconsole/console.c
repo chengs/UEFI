@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 console.c
-libconsole.hµÄÊµÏÖ
+libconsole.hçš„å®ç°
 */
 
 #include <efi.h>
@@ -8,28 +8,28 @@ libconsole.hµÄÊµÏÖ
 
 #include "libconsole.h"
 
-//»ñÈ¡ÑÕÉ«
+//è·å–é¢œè‰²
 VOID conGetColor(OUT UINTN *fore,OUT UINTN *back){
     *fore = ST->ConOut->Mode->Attribute & 0x000000ff;
     *back =  (UINT8)(ST->ConOut->Mode->Attribute >> 4);
 }
-//Éè¶¨ÑÕÉ«
+//è®¾å®šé¢œè‰²
 VOID conSetColor(IN UINTN fore,IN UINTN back){
     ST->ConOut->SetAttribute (ST->ConOut, EFI_TEXT_ATTR(fore,back));
 }
-//Çå³ıÆÁÄ»
+//æ¸…é™¤å±å¹•
 VOID conClearST(VOID){
     ST->ConOut->ClearScreen (ST->ConOut);
 }
-//Éè¶¨µ±Ç°¹â±êÎ»ÖÃ
+//è®¾å®šå½“å‰å…‰æ ‡ä½ç½®
 VOID conSetCursor(IN UINTN WIDTH,IN UINTN HEIGHT){
     ST->ConOut->SetCursorPosition(ST->ConOut,WIDTH,HEIGHT);
 }
-//Éè¶¨¹â±êÊÇ·ñÏÔÊ¾
+//è®¾å®šå…‰æ ‡æ˜¯å¦æ˜¾ç¤º
 VOID conSetCursorDisplay(IN BOOLEAN Enable){
     ST->ConOut->EnableCursor(ST->ConOut,Enable);
 }
-//Ñ¡¶¨×óÓÒÎ»ÖÃ¾ÓÖĞÊä³ö
+//é€‰å®šå·¦å³ä½ç½®å±…ä¸­è¾“å‡º
 VOID conStringOutMidLine(IN CHAR16 *string , IN UINTN Begin, IN UINTN End,IN UINTN row)
 {
     UINTN strlen;
@@ -51,7 +51,7 @@ VOID conStringOutMidLine(IN CHAR16 *string , IN UINTN Begin, IN UINTN End,IN UIN
     PrintAt(printPos,row,L"%s",stringOut);
 }
 
-//Ìî³äÒ»ĞĞ
+//å¡«å……ä¸€è¡Œ
 VOID conFillLine(IN CHAR16 c,IN UINTN Begin,IN UINTN End,IN UINTN row){
     CHAR16 *buffer;
     UINTN size = (End-Begin+1)+1;
@@ -66,7 +66,7 @@ VOID conFillLine(IN CHAR16 c,IN UINTN Begin,IN UINTN End,IN UINTN row){
     FreePool(buffer);
 }
 
-//Ìî³äÒ»ÁĞ
+//å¡«å……ä¸€åˆ—
 VOID conFillArrow(IN CHAR16 c,IN UINTN Begin,IN UINTN End,IN UINTN col){
     UINTN i;
     if(End<=Begin) return;

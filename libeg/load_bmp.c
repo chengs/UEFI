@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/load_bmp.c
  * Loading function for BMP images
  *

@@ -1,11 +1,11 @@
-/*libconsole.h
-    ÖØĞÂ×éºÏconsoleµÄ¸÷¸ö½Ó¿Ú
+ï»¿/*libconsole.h
+    é‡æ–°ç»„åˆconsoleçš„å„ä¸ªæ¥å£
 */
 
 #ifndef __LIBCONSOLE_LIBCONSOLE_H__
 #define __LIBCONSOLE_LIBCONSOLE_H__
 /*
-//ÑÕÉ«´úÂë
+//é¢œè‰²ä»£ç 
 UINTN EfiColor[] = {
     EFI_BLACK,  
     EFI_BLUE,    
@@ -29,23 +29,23 @@ UINTN EfiColor[] = {
   ((foreground) | ((background) << 4))
 */
 
-//»ñÈ¡ÑÕÉ«
+//è·å–é¢œè‰²
 VOID conGetColor(OUT UINTN *fore,OUT UINTN *back);
-//Éè¶¨ÑÕÉ«
+//è®¾å®šé¢œè‰²
 VOID conSetColor(IN UINTN fore,IN UINTN back);
-//Çå³ıÆÁÄ»
+//æ¸…é™¤å±å¹•
 VOID conClearST(VOID);
-//»ñµÃµ±Ç°¹â±êÎ»ÖÃ
+//è·å¾—å½“å‰å…‰æ ‡ä½ç½®
 //VOID conGetCursor(OUT UINTN *WIDTH,OUT UINTN *HEIGHT);
-//Éè¶¨µ±Ç°¹â±êÎ»ÖÃ
+//è®¾å®šå½“å‰å…‰æ ‡ä½ç½®
 VOID conSetCursor(IN UINTN WIDTH,IN UINTN HEIGHT);
-//Éè¶¨¹â±êÊÇ·ñÏÔÊ¾
+//è®¾å®šå…‰æ ‡æ˜¯å¦æ˜¾ç¤º
 VOID conSetCursorDisplay(IN BOOLEAN Enable);
-//Ìî³äÒ»ĞĞ
+//å¡«å……ä¸€è¡Œ
 VOID conFillLine(IN CHAR16 c,IN UINTN Begin,IN UINTN End,IN UINTN row);
-//Ìî³äÒ»ÁĞ
+//å¡«å……ä¸€åˆ—
 VOID conFillArrow(IN CHAR16 c,IN UINTN Begin,IN UINTN End,IN UINTN col);
-//Ñ¡¶¨×óÓÒÎ»ÖÃ¾ÓÖĞÊä³ö
+//é€‰å®šå·¦å³ä½ç½®å±…ä¸­è¾“å‡º
 VOID conStringOutMidLine(IN CHAR16 *string , IN UINTN Begin, IN UINTN End,IN UINTN row);
 
 #endif

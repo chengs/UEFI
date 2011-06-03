@@ -1,4 +1,4 @@
-set DIR=%cd%
+﻿set DIR=%cd%
 nmake run
 cd c:\FW\Edk\Sample\Platform\Nt32\Build
 set EDK_SOURCE=c:\FW\Edk

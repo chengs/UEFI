@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/screen.c
  * Screen handling functions
  *

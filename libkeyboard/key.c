@@ -1,9 +1,9 @@
-/*
+ï»¿/*
  * =====================================================================================
  *
  *       Filename:  key.c
  *
- *    Description:  key.h µÄÊµÏÖ
+ *    Description:  key.h çš„å®ç°
  *
  *        Version:  1.0
  *        Created:  2011/5/10 12:54:57
@@ -17,7 +17,7 @@
 
 #include	"key.h"
 
-//»ñµÃ¼üÅÌÊäÈëÉ¨ÃèÂë
+//è·å¾—é”®ç›˜è¾“å…¥æ‰«æç 
 UINT16 keyGetInput(){
 	EFI_INPUT_KEY Key;
 	EFI_STATUS Status;

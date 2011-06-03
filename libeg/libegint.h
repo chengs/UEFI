@@ -1,4 +1,4 @@
-/*
+﻿/*
  * libeg/libegint.h
  * EFI graphics library internal header
  *
