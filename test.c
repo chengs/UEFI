@@ -64,5 +64,8 @@ main ( int argc, char *argv[] )
 	}
 	
 	menuEnd();
+	
+	//这里调用SetVariable函数进行文件的设置
+	
 	return EXIT_SUCCESS;
 }				/* ----------  end of function main  ---------- */
